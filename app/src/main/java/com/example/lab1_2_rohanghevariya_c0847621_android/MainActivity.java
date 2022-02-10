@@ -1,0 +1,14 @@
+package com.example.lab1_2_rohanghevariya_c0847621_android;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+//testing
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
