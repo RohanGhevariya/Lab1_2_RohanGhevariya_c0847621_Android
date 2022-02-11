@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+this.setTitle("Add Product");
         dbHandler=new DBhelper(MainActivity.this);
         binding.idBtnAddCourse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,12 +39,14 @@ public class MainActivity extends AppCompatActivity {
                 binding.idProductDescription.setText("");
                 binding.idEdtProductPrice.setText("");
                 binding.idEdtProductLocation.setText("");
+                Intent i = new Intent(MainActivity.this, AllProducts.class);
+                startActivity(i);
             }
         });
         binding.idBtnAllProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, ViewProducts.class);
+                Intent i = new Intent(MainActivity.this, AllProducts.class);
                 startActivity(i);
             }
         });

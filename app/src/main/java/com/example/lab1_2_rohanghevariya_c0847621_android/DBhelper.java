@@ -61,7 +61,7 @@ public class DBhelper extends SQLiteOpenHelper {
     public ArrayList<ProductModel> readProducts() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursorProducts = db.rawQuery("SELECT * FROM myProducts WHERE pro_id = 1",null);
+        Cursor cursorProducts = db.rawQuery("SELECT * FROM myProducts LIMIT 1",null);
 
         // on below line we are creating a new array list.
         ArrayList<ProductModel> courseModalArrayList = new ArrayList<>();
@@ -106,8 +106,34 @@ public class DBhelper extends SQLiteOpenHelper {
         cursorProducts.close();
         return courseModalArrayList;
     }
+    // method for deleting
+    public void deleteProduct(String courseName) {
 
-        @Override
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        db.delete(TABLE_NAME, "pro_name=?", new String[]{courseName});
+        db.close();
+    }
+    //update
+    public void updateProduct(String originalProductName,String productName, String productDescription,String productPrice,  String providerLocation) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(NAME_COL, productName);
+        values.put(DESCRIPTION_COL, productDescription);
+        values.put(PRICE_COL, productPrice);
+        values.put(LOCATION_COL, providerLocation);
+
+
+        db.update(TABLE_NAME, values, "pro_name=?", new String[]{originalProductName});
+        db.close();
+    }
+
+
+    @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // this method is called to check if the table exists already.
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

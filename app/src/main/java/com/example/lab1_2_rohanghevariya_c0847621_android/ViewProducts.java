@@ -38,6 +38,13 @@ this.setTitle("Product");
                 startActivity(i);
             }
         });
+        binding.btnAddNewProd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ViewProducts.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
       //  binding.idRVProducts.setOnClickListener(new View.OnClickListener() );
     }
 }
